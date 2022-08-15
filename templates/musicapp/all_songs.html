@@ -10,26 +10,26 @@
       <div class="form-group">
         <div class="input-group">
           <div class="input-group">
-            <input type="text" class="form-control input-lg" style="border-radius: 5px;"
-            name="q" value="{{ request.GET.q }}" placeholder= "Search Songs "/>
+            <input type="text" class="form-control input-lg" style="border-radius: 5px;" name="q"
+              value="{{ request.GET.q }}" placeholder="Search Songs " />
 
             <select name="languages" class="custom-select mx-1" style="border-radius: 5px;">
               <option selected="selected" disabled>Languages</option>
               {% if all_languages %}
-                  {% for language in all_languages %}
-                      <option value={{language}}>{{language}}</option>
-                  {% endfor %}
+              {% for language in all_languages %}
+              <option value={{language}}>{{language}}</option>
+              {% endfor %}
               {% endif %}
             </select>
             <select name="singers" class="custom-select mx-1" style="border-radius: 5px;">
               <option selected="selected" disabled>Singers</option>
               {% if all_singers %}
-                  {% for singer in all_singers %}
-                      <option value={{singer}}>{{singer}}</option>
-                  {% endfor %}
+              {% for singer in all_singers %}
+              <option value={{singer}}>{{singer}}</option>
+              {% endfor %}
               {% endif %}
             </select>
-                          
+
             <span class='input-group-btn'>
               <button type="submit" style="border-radius: 5px;" class="btn btn-primary">Search</button>
             </span>
@@ -79,19 +79,25 @@
 <br>
 <footer class="footer">
   <div class="player" style="padding-left: 10px;padding-top:10px;background-color: #459dfb;">
-    <div class="left"><img src="{{last_played.song_img.url}}" height="90" width="90" style="border-radius: 10px 10px 10px 10px;"></div>
+    <div class="left"><img src="{{last_played.song_img.url}}" height="90" width="90"
+        style="border-radius: 10px 10px 10px 10px;"></div>
     <div class="right">
-       <div class="top">
-          <a class="song" style="margin-left: 15px;color: white;">{{last_played.name}}</a>
-          <a class="artist" style="margin-left: 15px;color:white">{{last_played.album}}</a>
-       </div>
-       <div class="bottom">
+      <div class="top">
+        <a class="song" style="margin-left: 15px;color: white;">{{last_played.name}}</a>
+        <a class="artist" style="margin-left: 15px;color:white">{{last_played.album}}</a>
+      </div>
+      <div class="bottom">
         {% if first_time %}
-          <audio controls=""  name="media" style="margin-left: 20px;margin-bottom: 10px;width: 1230px;height:30px"><source src="{{last_played.song_file.url}}" type="audio/mpeg" ></audio>
+        <audio controls="" name="media" style="margin-left: 20px;margin-bottom: 10px;width: 1230px;height:30px">
+          <source src="{{last_played.song_file.url}}" type="audio/mpeg">
+        </audio>
         {% else %}
-          <audio controls="" autoplay name="media" style="margin-left: 20px;margin-bottom: 10px;width: 1230px;height:30px"><source src="{{last_played.song_file.url}}" type="audio/mpeg" ></audio>
+        <audio controls="" autoplay name="media"
+          style="margin-left: 20px;margin-bottom: 10px;width: 1230px;height:30px">
+          <source src="{{last_played.song_file.url}}" type="audio/mpeg">
+        </audio>
         {% endif %}
-        </div>
+      </div>
     </div>
   </div>
 </footer>
