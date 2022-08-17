@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% load socialaccount %}
+{% block title %} Favourites {% endblock title %}
+
+{% block body %}
+
+<br>
+<div class="container">
+    <form action="{% url 'postcreate' %}">
+        <h4>제목: </h4>
+        <input type="text" name="title">
+        <br>
+        <br>
+        <h4>본문: </h4>
+        <textarea cols=40 rows=10 name="body"></textarea>
+        <br>
+        <br>
+        <input class="btn btn-dark" type="submit" value="글쓰기">
+    </form>
+</div>
+
+<div>
+    <form action="" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <table>
+            {{form.as_table}}
+        </table>
+        <input type="submit" value="새 글 생성하기">
+    </form>
+</div>
+
+{% endblock body %}

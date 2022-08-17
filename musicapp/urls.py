@@ -1,5 +1,5 @@
 from django.urls import path
-from . import views
+from musicapp import views
 
 # Add URLConf
 urlpatterns = [
@@ -17,6 +17,16 @@ urlpatterns = [
     path('play_song/<int:song_id>/', views.play_song_index, name='play_song_index'),
     path('play_recent_song/<int:song_id>/', views.play_recent_song, name='play_recent_song'),
 
-    
+    #musictalk
+    path('musictalk/', views.musictalk, name='musictalk'),
+    path('new/', views.new, name='new'),
+    path('detailmt/<int:blog_id>/', views.detailmt, name='detailmt'),
+    path('create_comment/<int:blog_id>',
+         views.create_comment, name='create_comment'),
+    path('create/', views.create, name='create'),
+    path('postcreate/', views.postcreate, name='postcreate'),
+    path('update/<int:blog_id>/', views.update, name='update'),
+    path('delete/<int:blog_id>/', views.delete, name='delete'),
+    path('search', views.search, name='search'),
 
 ]
