@@ -6,6 +6,7 @@ from django.contrib.auth.decorators import login_required
 
 from django.core.paginator import Paginator
 from django.utils import timezone
+from datetime import timezone
 from musicapp.models import Blog
 from musicapp.forms import BlogUpdate, CommentForm
 
@@ -349,8 +350,8 @@ def musictalk(request):
 
 def detailmt(request, blog_id):
     blog_detail = get_object_or_404(Blog, pk=blog_id)
-    comment_form = CommentForm()
-    return render(request, 'musicapp/detailmt.html',{'blog': blog_detail}, {'comment_form':comment_form})
+    #comment_form = CommentForm()
+    return render(request, 'musicapp/detailmt.html',{'blog': blog_detail})
 
 
 def create_comment(request, blog_id):
@@ -363,24 +364,24 @@ def create_comment(request, blog_id):
 
         return redirect('musicapp/detaimt.html', blog_id)
 
-def create1(request):
-    if(request.method == 'POST'):
-        post = Blog()
-        post.title = request.POST['title']
-        post.body = request.POST['body']
-        post.save()
-    return redirect('home')
+# def create1(request):
+#     return render(request, 'musicapp/create.html')
 
 def create(request):
-    return render(request, 'musicapp/create.html')
+    if(request.method == 'POST'):
+        blog = Blog()
+        blog.title = request.POST['title']
+        blog.body = request.POST['body']
+        blog.save()
+    return redirect('/musictalk')
 
-def postcreate(request):
-    blog = Blog()
-    blog.title = request.GET['title']
-    blog.body = request.GET['body']
-    blog.pub_date = timezone.datetime.now()
-    blog.save()
-    return redirect('musicapp/detailmt/' + str(blog.id))
+# def postcreate(request):
+#     blog = Blog()
+#     blog.title = request.GET['title']
+#     blog.body = request.GET['body']
+#     blog.pub_date = timezone.datetime.now()
+#     blog.save()
+#     return redirect('musicapp/musictalk.html' + str(blog.id))
 
 def update(request, blog_id):
     blog = Blog.objects.get(id=blog_id)
@@ -424,16 +425,3 @@ def userplaylist(request):
    # playlists = Playlist.objects.all
     context = {'playlists': playlists}
     return render(request, 'musicapp/userplaylist.html', context=context)
-
-# def  userplaylist_songs(request, playlist_name):
-#     songs = Song.objects.filter(playlist__playlist_name=playlist_name).distinct()
-
-#     if request.method == "POST":
-#         song_id = list(request.POST.keys())[1]
-#         playlist_song = Playlist.objects.filter(playlist_name=playlist_name, song__id=song_id)
-#         playlist_song.delete()
-#         messages.success(request, "Song removed from playlist!")
-
-#     context = {'playlist_name': playlist_name, 'songs': songs}
-
-#     return render(request, 'musicapp/playlist_songs.html', context=context)

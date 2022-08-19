@@ -42,8 +42,9 @@ class Recent(models.Model):
 
 #MusicTalk
 class Blog(models.Model):
+    id = models.AutoField(primary_key=True, null=False, blank=False) 
     title = models.CharField(max_length=200)
-    pub_date = models.DateTimeField('date published')
+    # pub_date = models.DateTimeField('date published')
     body = models.TextField()
     image = models.ImageField(upload_to='image/', default='')
 
@@ -67,8 +68,6 @@ class Comment(models.Model):
     comment = models.CharField(max_length=200)
     date = models.DateTimeField(auto_now_add=True)
     post = models.ForeignKey(Blog, on_delete=models.CASCADE) 
-    #models.ForeignKey : 어떤 게시물의 댓글인지 참조
-    #on_delete=CASCADE : 게시물이 삭제되면 댓글도 삭제
 
     def __str__(self):
         return self.comment #comment을 보여줌

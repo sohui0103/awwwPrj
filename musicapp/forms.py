@@ -13,10 +13,10 @@ class CommentForm(forms.ModelForm):
         fields = ['comment']
 
 
-class BlogForm(forms.Form):
-    #내가 입력받고자 하는 값들
-    title = forms.CharField()
-    body = forms.CharField(widget=forms.Textarea)
+class BlogForm(forms.ModelForm) :
+    class Meta : # Meta 클래스
+        model = Blog
+        fields = ['title', 'body']
 
 class BlogModelForm(forms.ModelForm):
     class Meta:

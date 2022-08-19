@@ -22,12 +22,13 @@ urlpatterns = [
 
     #musictalk
     path('musictalk/', views.musictalk, name='musictalk'),
-    path('new/', views.new, name='new'),
     path('detailmt/<int:blog_id>/', views.detailmt, name='detailmt'),
     path('create_comment/<int:blog_id>',
          views.create_comment, name='create_comment'),
+
+    path('new/', views.new, name='new'),     
     path('create/', views.create, name='create'),
-    path('postcreate/', views.postcreate, name='postcreate'),
+    #path('postcreate/', views.postcreate, name='postcreate'),
     path('update/<int:blog_id>/', views.update, name='update'),
     path('delete/<int:blog_id>/', views.delete, name='delete'),
     path('search', views.search, name='search'),
