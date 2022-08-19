@@ -1,0 +1,85 @@
+/*MusicTalkAnswer*/
+.MusicTalkAnswerDiv{
+    background-color: rgba(128, 128, 128, 0.222);
+    border-radius: 30px;
+    margin: 0 0 30px 0;
+}
+
+.MusicTalkAnswerTitle{
+    font-size: 50px;
+    font-family: 'Black Han Sans', sans-serif;
+    text-shadow: 5px 5px white;
+    padding: 20px 0 0 40px;
+}
+
+.AnswerSmallBox{
+    background-color: white;
+    border-radius: 20px;
+    margin: 30px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    position: relative;
+    bottom: 20px;
+}
+
+.AnswerTop{
+    margin: 25px;
+}
+
+.AnswerTitle{
+    font-size: 40px;
+    font-family: 'Black Han Sans', sans-serif;
+}
+
+.AnswerContents{
+    font-size: 20px;
+    font-family: 'Black Han Sans', sans-serif;
+}
+
+.AnswerLikeAndTextIcon{
+    display: flex;
+    margin: 10px 0 10px 0;
+}
+
+.AnswerLike{
+    margin: 0 15px 0 0;
+}
+
+.AnswerBottom{
+    height: 150px;
+}
+
+.AnswerTextDiv{
+    background-color: rgba(255, 166, 0, 0.263);
+    border: 2px solid beige;
+    border-radius: 20px;
+    height: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+input[placeholder='댓글을 입력하세요.'] {
+    background: none;
+    border: 0px;
+    width: 100%;
+    height: 100%;
+    outline:none;
+}
+
+.AnswerSubmit{
+    background: none;
+    border: 0px;
+    font-size: 20px;
+    cursor: pointer;
+    color: rgb(84, 84, 84);
+    position: relative;
+    right: 20px;
+}
+
+.AnswerSubmit:hover{
+    color: white;
+}

@@ -8,10 +8,14 @@ from django.core.paginator import Paginator
 from django.utils import timezone
 from datetime import timezone
 from musicapp.models import Blog
-from musicapp.forms import BlogUpdate
+from musicapp.forms import BlogUpdate, CommentForm, BlogForm
 
 
 # Create your views here.
+def logo(request):
+    return render(request, 'musicapp/Logo.html')
+
+
 def index(request):
 
     #Display recent songs
@@ -350,18 +354,25 @@ def musictalk(request):
 
 def detailmt(request, blog_id):
     blog_detail = get_object_or_404(Blog, pk=blog_id)
-    #comment_form = CommentForm()
-    return render(request, 'musicapp/detailmt.html',{'blog': blog_detail})
+    comment_form = CommentForm()
+    return render(request, 'musicapp/detailmt.html',{'blog': blog_detail, 'comment_form':comment_form})
 
+def new_comment(request, blog_id):
+    filled_form = CommentForm(request.POST)
+    if filled_form.is_valid():
+        finished_form = filled_form.save(commit = False)
+        finished_form.blog = get_object_or_404(Blog, pk = blog_id)
+        finished_form.save()
+    return redirect('detailmt', blog_id)
 
 def create_comment(request, blog_id):
     comment = Comment()
     comment.comment = request.POST['comment']
-    comment.date = timezone.now()
+    #comment.date = timezone.now()
     comment.blog = get_object_or_404(Blog, pk=blog_id)
     comment.save()
     detailmt(request, blog_id)
-    return redirect('musicapp/detailmt.html', blog_id)
+    return redirect('/detailmt', blog_id)
 
 # def create1(request):
 #     return render(request, 'musicapp/create.html')
@@ -382,7 +393,7 @@ def create(request):
 #     blog.save()
 #     return redirect('musicapp/musictalk.html' + str(blog.id))
 
-def update(request, blog_id):
+def update1(request, blog_id):
     blog = Blog.objects.get(id=blog_id)
 
     if request.method =='POST':
@@ -398,7 +409,7 @@ def update(request, blog_id):
  
         return render(request,'musicapp/update.html', {'form':form})
 
-def delete(request, blog_id):
+def delete1(request, blog_id):
     blog = Blog.objects.get(id=blog_id)
     blog.delete()
     return redirect('/')
@@ -424,3 +435,28 @@ def userplaylist(request):
    # playlists = Playlist.objects.all
     context = {'playlists': playlists}
     return render(request, 'musicapp/userplaylist.html', context=context)
+
+
+#게시물 삭제와 수정
+def delete(request, blog_id):
+    delete_post = get_object_or_404(Blog, pk=blog_id)
+    delete_post.delete()
+    return redirect('musictalk')
+
+def update(request, blog_id):
+    post = Blog.objects.get(id=blog_id)
+    # 글을 수정사항을 입력하고 제출을 눌렀을 때
+    if request.method == "POST":
+        form = BlogForm(request.POST, request.FILES)
+        if form.is_valid():
+            print(form.cleaned_data)
+            # {'name': '수정된 이름', 'image': <InMemoryUploadedFile: Birman_43.jpg 	(image/jpeg)>, 'gender': 'female', 'body': '수정된 내용'}
+            post.title = form.cleaned_data['title']
+            post.body = form.cleaned_data['body']
+            post.save()
+            return redirect('/detailmt/'+str(post.pk))
+        
+    # 수정사항을 입력하기 위해 페이지에 처음 접속했을 때
+    else:
+        form = BlogForm()
+        return render(request, 'update.html',{'form':form})

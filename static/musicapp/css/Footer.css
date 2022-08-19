@@ -1,0 +1,19 @@
+/*FooterDiv*/
+.FooterDiv{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #2e2e2e;
+    color: gray;
+    font-weight: 600;
+    height: 100px;
+}
+
+.FooterBigText{
+    font-size: 16px;
+}
+
+.FooterSamllText{
+    font-size: 13px;
+}

@@ -1,0 +1,105 @@
+/*Login*/
+.LoginDiv{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 40px 0 30px 0;
+}
+
+.LoginLineBox{
+    border: 5px solid black;
+    border-radius: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 500px;
+    height: 530px;
+    position: relative;
+    bottom: 10px;
+}
+
+.LoginHeader{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    bottom: 25px;
+}
+
+.LoginTitle{
+    font-size: 45px;
+    font-family: 'Black Han Sans', sans-serif;
+}
+
+.LoginIdPw{
+    display: flex;
+    flex-direction: column;
+}
+
+.SnsLogin{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.SnsTxtAndCheck{
+    display: flex;
+    justify-content: space-between;
+    width: 50%;
+}
+
+.SnsLoginBtn{
+    display: flex;
+    flex-direction: column;
+}
+
+.InstagramBtn,
+.AppleBtn,
+.TwitterBtn{
+    width: 250px;
+    height: 30px;
+    margin: 5px;
+    border-radius: 3px;
+}
+
+input[placeholder='ID'] {
+    width: 250px;
+    height: 25px;
+    margin: 5px;
+}
+
+input[placeholder='PW'] {
+    width: 250px;
+    height: 25px;
+    margin: 5px;
+}
+
+button[type='submit']{
+    width: 250px;
+    height: 30px;
+    margin: 5px;
+}
+
+.SnsLoginText{
+    font-size: 15px;
+    font-weight: 600;
+}
+
+.InstagramBtn:hover,
+.AppleBtn:hover,
+.TwitterBtn:hover,
+.LoginPageBtn:hover{
+    background-color: #2e2e2e;
+    color: white;
+}
+
+.LoginFooter{
+    position: relative;
+    top: 25px;
+}
+
+.LoginPageBtn{
+    border-radius: 3px;
+}

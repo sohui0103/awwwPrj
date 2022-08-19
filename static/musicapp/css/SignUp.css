@@ -1,0 +1,126 @@
+/*SignUp*/
+.SignUpDiv{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 40px 0 30px 0;
+}
+
+.SignUpLineBox{
+    border: 5px solid black;
+    border-radius: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 500px;
+    height: 530px;
+    position: relative;
+    bottom: 10px;
+}
+
+.SignUpHeader{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.SignUpBody{
+    text-align: center;
+}
+
+.SignUpTitle{
+    font-size: 45px;
+    font-family: 'Black Han Sans', sans-serif;
+    position: relative;
+    top:15px;
+}
+
+input[placeholder='아이디'] {
+    width: 243px;
+    height: 25px;
+    margin: 5px;
+}
+
+.SignUpCheckBtn{
+    height: 30px;
+    position: relative;
+    top: 1px;
+    border-radius: 5px;
+}
+
+.SignUpIdTxt{
+    font-size: 13px;
+    font-weight: 600;
+    position: relative;
+    top: 15px;
+    right: 142px;
+}
+
+input[placeholder='비밀번호'] {
+    width: 323px;
+    margin: 5px;
+    height: 25px;
+}
+
+input[placeholder='비밀번호 확인'] {
+    width: 323px;
+    margin: 5px;
+    height: 25px;
+}
+
+.SignUpPwTxt{
+    font-size: 13px;
+    font-weight: 600;
+    position: relative;
+    top: 15px;
+    right: 137px;
+}
+
+input[placeholder='이름'] {
+    width: 323px;
+    margin: 5px;
+    height: 25px;
+}
+
+.SignUpNameTxt{
+    font-size: 13px;
+    font-weight: 600;
+    position: relative;
+    top: 15px;
+    right: 151px;
+}
+
+input[placeholder='이메일 인증'] {
+    width: 323px;
+    margin: 5px;
+    height: 25px;
+}
+
+.SignUpEmailTxt{
+    font-size: 13px;
+    font-weight: 600;
+    position: relative;
+    top: 15px;
+    right: 143px;
+}
+
+.SignUpFooter{
+    margin-top: 20px;
+}
+
+.SignUpBottomBtn{
+    width: 80px;
+    height: 30px;
+    border-radius: 5px;
+}
+
+.SignUpBottomBtn:hover{
+    background-color: #2e2e2e;
+    color: white;
+}
+
+.SignUpCheckBtn:hover{
+    background-color: #2e2e2e;
+    color: white;
+}

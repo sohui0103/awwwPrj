@@ -3,7 +3,9 @@ from musicapp import views
 
 # Add URLConf
 urlpatterns = [
-    path('', views.index, name='index'),
+    #path('', views.index, name='index'),
+    path('', views.logo, name='logo'),
+    path('index/', views.index, name='index'),
     path('<int:song_id>/', views.detail, name='detail'),
     path('mymusic/', views.mymusic, name='mymusic'),
     path('playlist/', views.playlist, name='playlist'),
@@ -26,11 +28,19 @@ urlpatterns = [
     path('create_comment/<int:blog_id>',
          views.create_comment, name='create_comment'),
 
+    path('new_comment/<int:blog_id>', views.new_comment, name='new_comment'),     
+
     path('new/', views.new, name='new'),     
     path('create/', views.create, name='create'),
     #path('postcreate/', views.postcreate, name='postcreate'),
-    path('update/<int:blog_id>/', views.update, name='update'),
-    path('delete/<int:blog_id>/', views.delete, name='delete'),
+    #path('update/<int:blog_id>/', views.update, name='update'),
+    #path('delete/<int:blog_id>/', views.delete, name='delete'),
     path('search', views.search, name='search'),
+
+    # 삭제
+    path('delete/<int:blog_id>', views.delete , name="delete"),
+
+    # 수정
+    path('detail/<int:blog_id>/edit', views.update, name="update"),
 
 ]
