@@ -1,9 +1,9 @@
 {% extends 'base.html' %}
 {% load socialaccount %}
+{% load static %}
 {% block title %} Home {% endblock title %}
 
 {% block body %}
-
 <br>
 <div class="container">
   <div class="col-md-13">
@@ -99,68 +99,34 @@
   <br>
   <br>
 
-
-  <!-- Hindi Songs -->
+  <!-- 플레이리스트 -->
   {% if not query_search %}
   <header class="section-heading">
-    <h5 class="section-title">HINDI SONGS</h5>
+    <h5 class="section-title">Awww's playlist</h5>
   </header>
   <hr>
   {% endif %}
-  <!-- Song list -->
-  <div class="row" style="margin-right: 65px;margin-left:-15px">
-    {% if hindi_songs %}
-    {% for song in hindi_songs %}
-    <div class="col-md-2">
-      <div class="hovereffect">
-        <img src="{{ song.song_img.url}}" class="img-responsive" height="135" width="135"
-          style="border-radius: 8px 8px 8px 8px;">
-        <div class="overlay">
-          <a class="btn btn-outline-light mt-5 mx-1" href="{% url 'play_song_index' song.id %}"><i class="fa fa-play"
-              aria-hidden="true"></i></a>
-          <a class="btn btn-outline-light mt-5 mx-1" href="{% url 'detail' song.id %}"><i class="fa fa-info-circle"
-              aria-hidden="true"></i></a>
-        </div>
-      </div>
-    </div>
-    {% endfor %}
-    {% endif %}
-    {% if not query_search %}
-    <a href="{% url 'hindi_songs' %}" class="btn btn-primary float-right" style="height: 135px;">
-      <center style="margin-top: 45px;">View all <i class="fa fa-arrow-right" aria-hidden="true"></i></center>
-    </a>
-    {% endif %}
-  </div>
-  <br>
-  <br>
 
-  <!-- English Songs -->
-  {% if not query_search %}
-  <header class="section-heading">
-    <h5 class="section-title">ENGLISH SONGS</h5>
-  </header>
-  <hr>
-  {% endif %}
-  <!-- Song list -->
+  <!-- 플레이리스트 목록 -->
   <div class="row" style="margin-right: 65px;margin-left:-15px">
-    {% if english_songs %}
-    {% for song in english_songs %}
-    <div class="col-md-2">
-      <div class="hovereffect">
-        <img src="{{ song.song_img.url}}" class="img-responsive" height="135" width="135"
-          style="border-radius: 8px 8px 8px 8px;">
-        <div class="overlay">
-          <a class="btn btn-outline-light mt-5 mx-1" href="{% url 'play_song_index' song.id %}"><i class="fa fa-play"
-              aria-hidden="true"></i></a>
-          <a class="btn btn-outline-light mt-5 mx-1" href="{% url 'detail' song.id %}"><i class="fa fa-info-circle"
-              aria-hidden="true"></i></a>
-        </div>
+    {% if playlists %}
+    {% for playlist in playlists %}
+    <div class="col-md-3">
+      <div class="thumbnail">
+        <a href="{% url 'playlist_songs' playlist.playlist_name %}">
+          <img src="{% static 'musicapp/images/bg.jpg' %}" class="img-responsive" height="200" width="200">
+        </a>
+        <center>
+          <h4 style="margin-left:-50px">{{playlist.playlist_name}}</h4>
+        </center>
       </div>
     </div>
     {% endfor %}
+    {% else %}
+    <p>아직 등록된 플레이리스트가 없습니다. </p>
     {% endif %}
     {% if not query_search %}
-    <a href="{% url 'english_songs' %}" class="btn btn-primary float-right" style="height: 135px;">
+    <a href="{% url 'userplaylist' %}" class="btn btn-primary float-right" style="height: 135px;">
       <center style="margin-top: 45px;">View all <i class="fa fa-arrow-right" aria-hidden="true"></i></center>
     </a>
     {% endif %}

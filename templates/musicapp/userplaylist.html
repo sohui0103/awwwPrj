@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% load socialaccount %}
+{% block title %} Playlist {% endblock title %}
+{% block body %}
+{% load static %}
+<br>
+<div class="container">
+
+    <header class="section-heading">
+        <h3 class="section-title">Awww Playlists</h3>
+    </header><!-- sect-heading -->
+    <hr>
+    <!-- music list -->
+    <div class="row">
+        {% if playlists %}
+        {% for playlist in playlists %}
+        <div class="col-md-3">
+            <div class="thumbnail">
+                <a href="{% url 'userplaylist_songs' userplaylist.userplaylist_name %}">
+                    <img src="{% static 'musicapp/images/bg.jpg' %}" class="img-responsive" height="200" width="200">
+                </a>
+                <center>
+                    <h4 style="margin-left:-50px">{{userplaylist.userplaylist_name}}</h4>
+                </center>
+            </div>
+        </div>
+        {% endfor %}
+        {% else %}
+        <p>아직 등록된 플레이리스트가 없습니다. 첫 플레이리스트 등록자가 되어주세요!</p>
+        {% endif %}
+    </div>
+
+</div>
+
+{% endblock body %}

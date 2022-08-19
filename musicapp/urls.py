@@ -17,6 +17,10 @@ urlpatterns = [
     path('play_song/<int:song_id>/', views.play_song_index, name='play_song_index'),
     path('play_recent_song/<int:song_id>/', views.play_recent_song, name='play_recent_song'),
 
+    #유저 플레이리스트
+    path('userplaylist/', views.userplaylist, name='userplaylist'),
+    path('userplaylist/<str:userplaylist_name>/', views.user_playlist_songs, name='user_playlist_songs'),
+
     #musictalk
     path('musictalk/', views.musictalk, name='musictalk'),
     path('new/', views.new, name='new'),

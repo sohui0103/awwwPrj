@@ -27,6 +27,11 @@ class Playlist(models.Model):
     playlist_name = models.CharField(max_length=200)
     song = models.ForeignKey(Song, on_delete=models.CASCADE)
 
+#유저 플레이리스트
+class UserPlaylist(models.Model):
+    playlist_name = models.CharField(max_length=200)
+    song = models.ForeignKey(Song, on_delete=models.CASCADE)
+
 
 class Favourite(models.Model):
     id = models.AutoField(primary_key=True)

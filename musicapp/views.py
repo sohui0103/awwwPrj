@@ -418,3 +418,23 @@ def search(request):
     
     else:
         return render(request, 'musicapp/search.html')
+
+#유저의 플레이리스트
+def userplaylist(request):
+    userplaylists = UserPlaylist.objects.all
+    context = {'userplaylists': userplaylists}
+    return render(request, 'musicapp/userplaylist.html', context=context)
+
+
+def  user_playlist_songs(request, userplaylist_name):
+    songs = Song.objects.filter(userplaylist__playlist_name=userplaylist_name).distinct()
+
+    if request.method == "POST":
+        song_id = list(request.POST.keys())[1]
+        playlist_song = UserPlaylist.objects.filter(playlist_name=userplaylist_name, song__id=song_id)
+        playlist_song.delete()
+        messages.success(request, "Song removed from playlist!")
+
+    context = {'userplaylist_name': userplaylist_name, 'songs': songs}
+
+    return render(request, 'musicapp/userplaylist_songs.html', context=context)
