@@ -293,13 +293,12 @@ def playlist(request):
     context = {'playlists': playlists}
     return render(request, 'musicapp/playlist.html', context=context)
 
-
 def playlist_songs(request, playlist_name):
-    songs = Song.objects.filter(playlist__playlist_name=playlist_name, playlist__user=request.user).distinct()
+    songs = Song.objects.filter(playlist__playlist_name=playlist_name).distinct()
 
     if request.method == "POST":
         song_id = list(request.POST.keys())[1]
-        playlist_song = Playlist.objects.filter(playlist_name=playlist_name, song__id=song_id, user=request.user)
+        playlist_song = Playlist.objects.filter(playlist_name=playlist_name, song__id=song_id)
         playlist_song.delete()
         messages.success(request, "Song removed from playlist!")
 
@@ -421,20 +420,20 @@ def search(request):
 
 #유저의 플레이리스트
 def userplaylist(request):
-    userplaylists = UserPlaylist.objects.all
-    context = {'userplaylists': userplaylists}
+    playlists = Playlist.objects.values('playlist_name').distinct
+   # playlists = Playlist.objects.all
+    context = {'playlists': playlists}
     return render(request, 'musicapp/userplaylist.html', context=context)
 
+# def  userplaylist_songs(request, playlist_name):
+#     songs = Song.objects.filter(playlist__playlist_name=playlist_name).distinct()
 
-def  user_playlist_songs(request, userplaylist_name):
-    songs = Song.objects.filter(userplaylist__playlist_name=userplaylist_name).distinct()
+#     if request.method == "POST":
+#         song_id = list(request.POST.keys())[1]
+#         playlist_song = Playlist.objects.filter(playlist_name=playlist_name, song__id=song_id)
+#         playlist_song.delete()
+#         messages.success(request, "Song removed from playlist!")
 
-    if request.method == "POST":
-        song_id = list(request.POST.keys())[1]
-        playlist_song = UserPlaylist.objects.filter(playlist_name=userplaylist_name, song__id=song_id)
-        playlist_song.delete()
-        messages.success(request, "Song removed from playlist!")
+#     context = {'playlist_name': playlist_name, 'songs': songs}
 
-    context = {'userplaylist_name': userplaylist_name, 'songs': songs}
-
-    return render(request, 'musicapp/userplaylist_songs.html', context=context)
+#     return render(request, 'musicapp/playlist_songs.html', context=context)
