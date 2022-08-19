@@ -8,7 +8,7 @@ from django.core.paginator import Paginator
 from django.utils import timezone
 from datetime import timezone
 from musicapp.models import Blog
-from musicapp.forms import BlogUpdate, CommentForm
+from musicapp.forms import BlogUpdate
 
 
 # Create your views here.
@@ -355,14 +355,13 @@ def detailmt(request, blog_id):
 
 
 def create_comment(request, blog_id):
-    filled_form = CommentForm(request.POST)
-
-    if filled_form.is_valid():
-        finished_form  = filled_form.save(commit=False) 
-        finished_form.post = get_object_or_404(Blog, pk=blog_id) 
-        finished_form.save()
-
-        return redirect('musicapp/detaimt.html', blog_id)
+    comment = Comment()
+    comment.comment = request.POST['comment']
+    comment.date = timezone.now()
+    comment.blog = get_object_or_404(Blog, pk=blog_id)
+    comment.save()
+    detailmt(request, blog_id)
+    return redirect('musicapp/detailmt.html', blog_id)
 
 # def create1(request):
 #     return render(request, 'musicapp/create.html')

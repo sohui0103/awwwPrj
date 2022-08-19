@@ -67,7 +67,7 @@ class Blog(models.Model):
 class Comment(models.Model):
     comment = models.CharField(max_length=200)
     date = models.DateTimeField(auto_now_add=True)
-    post = models.ForeignKey(Blog, on_delete=models.CASCADE) 
+    blog = models.ForeignKey(Blog, on_delete=models.CASCADE) 
 
     def __str__(self):
         return self.comment #comment을 보여줌
